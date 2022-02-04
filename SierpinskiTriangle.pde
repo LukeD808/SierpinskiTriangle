@@ -14,22 +14,20 @@ public void draw()
     rect(0,0,1000,1000);
     sierpinski(0,1000,1000);
 }
-public void mouseWheel(MouseEvent event)//optional
+public void mouseDragged()//optional
 {
-  if (event.getCount() < 0){
-      hold += 10;
-  }
-  if (event.getCount() > 0){
-    
-      hold -= 10;
-    
-  }
+   hold += 10;
 }
 public void sierpinski(int x, int y, int len) 
 {
+  if (hold >= 2000){
+    hold = -1000;
+    x = 0;
+    y = 1000;
+  }
   if (len < 10){
     fill(r,g,b);
-    triangle(x, y, x+len, y, x+(len/2)+hold, y-len-hold);
+    triangle(x+hold, y, x+len+hold, y, x+(len/2)+hold, y-len);
   }
   else{
     sierpinski(x, y, len/2);
@@ -39,4 +37,9 @@ public void sierpinski(int x, int y, int len)
     g = (int)(Math.random()*256);
     b++;
   }
+}
+
+public void sierpinskiCarpet()
+{
+  //This was meant as a joke.
 }
